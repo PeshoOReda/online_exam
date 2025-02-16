@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam/presentation/home/explore.dart';
 import 'package:online_exam/presentation/home/home_screen.dart';
+
 import 'presentation/home/level_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Online Exam',
+        title: 'OnlineExam',
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true),
