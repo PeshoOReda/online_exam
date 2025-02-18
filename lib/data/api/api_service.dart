@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -31,38 +33,41 @@ class ApiService {
         return Left(NetworkError(errorMessage: 'No Internet Connection'));
       }
 
-      Uri url = Uri.parse(ApiConstant.baseUrl+ ApiEndPoint.registerApi);
+      Uri url = Uri.parse(ApiConstant.baseUrl + ApiEndPoint.registerApi);
       var registerRequest = RegisterRequest(
-          username:userName,
-          firstName:firstName,
-          lastName:lastName,
-          email:email,
-          password:password,
-          rePassword:rePassword,
-          phone:phoneNumber
-      );
-
+          username: userName,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          rePassword: rePassword,
+          phone: phoneNumber);
       var requestBody = jsonEncode(registerRequest.toJson());
-      print('Request body: $requestBody');
 
       var response = await http.post(
         url,
         body: requestBody,
-      );
+        headers: {'Content-Type': 'application/json'},
+      ).timeout(const Duration(seconds: 10));
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-
-      if (response.statusCode == 200) {
-        var registerResponse = RegisterResponseDataModel.fromJson(jsonDecode(response.body));
-        return Right(registerResponse);
-      } else {
-        return Left(ServerError(errorMessage: 'Server Error: ${response.statusCode}'));
+      try {
+        var responseData = jsonDecode(response.body);
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          var registerResponse = RegisterResponseDataModel.fromJson(responseData);
+          return Right(registerResponse);
+        } else {
+          return Left(ServerError(
+              errorMessage: responseData['message'] ?? 'Server Error: ${response.statusCode}'));
+        }
+      } catch (e) {
+        return Left(ServerError(errorMessage: 'Invalid JSON response: $e'));
       }
+    } on SocketException {
+      return Left(NetworkError(errorMessage: 'No Internet Connection'));
+    } on TimeoutException {
+      return Left(ServerError(errorMessage: 'Request timed out'));
     } catch (e) {
-      print('Unexpected Error: $e');
       return Left(ServerError(errorMessage: 'Unexpected Error: $e'));
     }
   }
 }
-
