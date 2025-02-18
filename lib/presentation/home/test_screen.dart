@@ -50,7 +50,7 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Question Page'),
+        title: Text('QuestionPage'),
       ),
       body: Center(
           child: isLoading
