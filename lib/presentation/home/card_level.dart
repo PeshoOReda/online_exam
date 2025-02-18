@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:online_exam/data/api/get_quiz.dart';
 
 class CardExam extends StatelessWidget {
   const CardExam({super.key});
@@ -14,20 +14,20 @@ class CardExam extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SvgPicture.asset(
-              'assets/images/Profit.svg',
-              width: 50,
-              height: 50,
+            Image.asset(
+              'assets/images/Profit.png',
+              width: 100,
+              height: 100,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'High level',
+                  '${Quiz().title}',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '20 Question',
+                  '${Quiz().numberOfQuestions.toString()} Questions',
                   style: TextStyle(fontSize: 18),
                 ),
                 Text(
@@ -37,7 +37,7 @@ class CardExam extends StatelessWidget {
               ],
             ),
             Text(
-              '30 Minutes',
+              Quiz().duration.toString(),
               style: TextStyle(fontSize: 18),
             ),
           ],

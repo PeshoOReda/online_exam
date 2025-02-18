@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam/presentation/home/explore.dart';
-import 'package:online_exam/presentation/home/home_screen.dart';
+import 'package:online_exam/presentation/home/test_screen.dart';
 
 import 'presentation/home/level_page.dart';
 
@@ -14,10 +14,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true),
-        home: HomeScreen(),
+        home: QuestionPage(),
         routes: {
           '/languages': (context) => LevelScreen(),
-          '/search_subjects': (context) => ExploreScreen()
+          '/search_subjects': (context) => ExploreScreen(),
+          '/questions': (context) => QuestionPage(),
         });
   }
 }

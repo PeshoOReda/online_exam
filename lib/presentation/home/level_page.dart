@@ -10,33 +10,31 @@ class LevelScreen extends StatelessWidget {
       appBar: AppBar(
           leading: BackButton(onPressed: () => Navigator.of(context).pop()),
           title: Text('Languages')),
-      body: SingleChildScrollView(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'English',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  CardExam(),
-                  CardExam(),
-                  CardExam(),
-                  SizedBox(height: 16),
-                  Text(
-                    'Spanish',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  CardExam(),
-                  CardExam(),
-                ],
-              ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'English',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                CardExam(),
+                CardExam(),
+                CardExam(),
+                SizedBox(height: 16),
+                Text(
+                  'Spanish',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                CardExam(),
+                CardExam(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

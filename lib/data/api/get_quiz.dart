@@ -2,22 +2,22 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Quiz {
-  final String id;
-  final String title;
-  final int duration;
-  final String subject;
-  final int numberOfQuestions;
-  final bool active;
-  final DateTime createdAt;
+  final String? id;
+  final String?title;
+  final int? duration;
+  final String? subject;
+  final int? numberOfQuestions;
+  final bool? active;
+  final DateTime? createdAt;
 
   Quiz({
-    required this.id,
-    required this.title,
-    required this.duration,
-    required this.subject,
-    required this.numberOfQuestions,
-    required this.active,
-    required this.createdAt,
+     this.id,
+     this.title,
+     this.duration,
+     this.subject,
+     this.numberOfQuestions,
+     this.active,
+     this.createdAt,
   });
 
   factory Quiz.fromJson(Map<String, dynamic> json) {

@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Subject {
-  final String id;
-  final String name;
-  final String icon;
-  final DateTime createdAt;
+  final String? id;
+  final String? name;
+  final String? icon;
+  final DateTime? createdAt;
 
   Subject({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.createdAt,
+    this.id,
+    this.name,
+    this.icon,
+    this.createdAt,
   });
 
   factory Subject.fromJson(Map<String, dynamic> json) {

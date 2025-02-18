@@ -23,11 +23,11 @@ class CardSubject extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15)),
                 child: Column(children: [
                   subject != null
-                      ? Image.network(subject.icon)
+                      ? Image.network(subject.icon ?? '')
                       : CircularProgressIndicator(),
                   Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(subject != null ? subject.name : 'Loading...',
+                      child: Text(subject != null ? (subject.name ?? 'Loading...') : 'Loading...',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)))
                 ]));
